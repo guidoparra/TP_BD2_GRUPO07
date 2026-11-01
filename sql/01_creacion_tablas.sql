@@ -5,7 +5,7 @@ CREATE TABLE Compra (
 
 
     CONSTRAINT FK_Compra_Proveedor
-    FOREING KEY (IdProveedor)
+    FOREIGN KEY (IdProveedor)
     REFERENCES Proveedor (IdProveedor)
 );
 
@@ -18,11 +18,11 @@ CREATE TABLE DetalleCompra (
 
 
     CONSTRAINT FK_DetalleCompra_Compra
-    FOREING KEY (IdCompra),
+    FOREIGN KEY (IdCompra)
     REFERENCES Compra(IdCompra),
 
     CONSTRAINT FK_DetalleCompra_Producto
-    FOREING KEY (IdProducto)
+    FOREIGN KEY (IdProducto)
     REFERENCES Producto(IdProducto),
 
 
