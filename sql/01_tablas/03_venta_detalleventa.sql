@@ -1,6 +1,5 @@
 ﻿-- =============================================
--- Parra, Guido Emanuel - Tablas Venta y DetalleVenta
--- Requiere: Cliente y Producto creadas
+-- Parra Guido Emanuel - Tablas Venta y DetalleVenta
 -- =============================================
 USE PetShop;
 GO
