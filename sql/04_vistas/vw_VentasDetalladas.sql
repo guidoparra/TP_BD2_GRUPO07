@@ -1,7 +1,6 @@
 ﻿-- =============================================
--- Parra, Guido Emanuel - vw_VentasDetalladas
--- Cada línea de venta con cliente, producto,
--- categoría, subtotal y estado
+-- Parra Guido Emanuel - vw_VentasDetalladas
+
 -- =============================================
 USE PetShop;
 GO
