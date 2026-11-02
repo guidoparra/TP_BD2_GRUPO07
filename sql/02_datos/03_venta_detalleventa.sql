@@ -1,8 +1,6 @@
 ﻿-- =============================================
--- Parra, Guido Emanuel - Datos de Venta y DetalleVenta
--- Se cargan ANTES de crear el trigger, así el stock
--- que cargó Lucía queda como "stock actual"
--- Requiere: al menos 5 clientes y 8 productos
+-- Parra Guido Emanuel - Datos de Venta y DetalleVenta
+-- El material de la facu dice que requiere: al menos 5 clientes y 8 productos
 -- =============================================
 USE PetShop;
 GO
