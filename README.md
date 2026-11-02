@@ -25,35 +25,66 @@ Funcionalidades principales:
 - Registro de ventas con detalle de productos, cantidades y precio al momento de la venta.
 - Registro de compras a proveedores para la reposición de mercadería.
 - Anulación de ventas sin pérdida del historial, con devolución automática del stock.
-- Historial de cambios de precio de los productos.
-- Consultas de productos con bajo stock, productos más vendidos y ventas por período.
+- Consultas de productos con bajo stock, productos más vendidos, ventas por período y resumen por cliente.
 
 ## Estructura del repositorio
 
 ```
 ├── README.md
-├── PetShop_Script.sql   → Script completo: base, tablas, restricciones, vistas,
-│                          procedimientos, triggers y datos de ejemplo
-└── pruebas_demo.sql     → Consultas de prueba usadas en el video demo
+├── PetShop_Script.sql          → Script final unificado (se arma al cierre del proyecto)
+└── sql/
+    ├── 00_crear_base.sql       → Crea la base PetShop desde cero
+    ├── 01_tablas/              → Un archivo por integrante
+    ├── 02_datos/               → Un archivo por integrante
+    ├── 03_funciones/
+    ├── 04_vistas/
+    ├── 05_triggers/
+    ├── 06_procedimientos/
+    └── 07_pruebas/             → Casos de prueba usados en el video demo
 ```
+
+ Nombre de los archivos de tablas y datos:
+
+| Orden | Archivo | Responsable |
+|---|---|---|
+| 01 | `01_cliente_proveedor.sql` | Dante |
+| 02 | `02_categoria_producto.sql` | Lucía |
+| 03 | `03_venta_detalleventa.sql` | Guido |
+| 04 | `04_compra_detallecompra.sql` | Camila |
+
+Funciones, vistas, triggers y procedimientos: un archivo por objeto, con el nombre del objeto (ej: `vw_VentasDetalladas.sql`).
+
+## Orden de ejecución
+
+1. `sql/00_crear_base.sql`
+2. `sql/01_tablas/` en orden numérico (01 → 04)
+3. `sql/02_datos/` en orden numérico (01 → 04)
+4. `sql/03_funciones/`
+5. `sql/04_vistas/`
+6. `sql/05_triggers/`
+7. `sql/06_procedimientos/`
+
 
 ## Objetos de la base de datos
 
-**Tablas:** Categoria, Proveedor, Producto, HistorialPrecio, Cliente, Venta, DetalleVenta, Compra, DetalleCompra
+**Tablas:** Cliente, Proveedor, Categoria, Producto, Venta, DetalleVenta, Compra, DetalleCompra
 
-| Tipo | Nombre | Descripción |
-|---|---|---|
-| Vista | `vw_VentasDetalladas` | Ventas con cliente, estado y total |
-| Vista | `vw_ProductosBajoStock` | Productos que necesitan reposición |
-| Vista | `vw_ProductosMasVendidos` | Ranking de productos vendidos |
-| Vista | `vw_ResumenPorCliente` | Cantidad de compras y total gastado por cliente |
-| Procedimiento | `sp_AgregarProductoAVenta` | Agrega un producto a una venta con el precio vigente |
-| Procedimiento | `sp_AgregarProductoACompra` | Agrega un producto a una compra a proveedor |
-| Procedimiento | `sp_VentasPorPeriodo` | Ventas y total recaudado entre dos fechas |
-| Procedimiento | `sp_AnularVenta` | Anula una venta sin borrarla |
-| Trigger | `trg_DescontarStockVenta` | Valida y descuenta stock al vender |
-| Trigger | `trg_SumarStockCompra` | Suma stock al registrar una compra |
-| Trigger | `trg_HistorialPrecio` | Registra los cambios de precio |
-| Trigger | `trg_DevolverStockAnulacion` | Devuelve el stock al anular una venta |
+| Tipo | Nombre | Descripción | Responsable |
+|---|---|---|---|
+| Función | `fn_TotalVenta` | Devuelve el total de una venta | Dante |
+| Vista | `vw_VentasDetalladas` | Líneas de venta con cliente, producto, subtotal y estado | Guido |
+| Vista | `vw_ProductosBajoStock` | Productos que necesitan reposición | Camila |
+| Vista | `vw_ProductosMasVendidos` | Ranking de productos vendidos | Lucía |
+| Vista | `vw_ResumenPorCliente` | Cantidad de compras y total gastado por cliente (usa `fn_TotalVenta`) | Dante |
+| Procedimiento (acción) | `sp_AgregarProductoAVenta` | Agrega un producto a una venta con el precio vigente | Guido |
+| Procedimiento (acción) | `sp_AgregarProductoACompra` | Agrega un producto a una compra a proveedor | Camila |
+| Procedimiento (reporte) | `sp_VentasPorPeriodo` | Ventas y total recaudado entre dos fechas | Lucía |
+| Procedimiento (acción) | `sp_AnularVenta` | Anula una venta sin borrarla | Dante |
+| Trigger INSERT | `trg_DescontarStockVenta` | Valida y descuenta stock al vender | Guido |
+| Trigger INSERT | `trg_SumarStockCompra` | Suma stock al registrar una compra | Camila |
+| Trigger DELETE | `trg_DevolverStockDetalleVenta` | Devuelve el stock al eliminar una línea de venta | Lucía |
+| Trigger UPDATE | `trg_DevolverStockAnulacion` | Devuelve el stock al anular una venta | Dante |
 
 
+- Documento PDF: *(link)*
+- Video demo: *(link)*
