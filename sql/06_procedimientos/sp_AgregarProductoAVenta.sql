@@ -1,7 +1,7 @@
 ﻿-- =============================================
--- Parra, Guido Emanuel - sp_AgregarProductoAVenta
--- Si @IdVenta es NULL crea una venta nueva para @IdCliente.
--- El stock NO se toca acá: lo descuenta trg_DescontarStockVenta.
+-- Parra Guido Emanuel - sp_AgregarProductoAVenta
+-- Si @IdVenta es NULL entonces crea una venta nueva para @IdCliente
+-- El stock NO se toca acá: lo descuenta trg_DescontarStockVenta
 -- =============================================
 USE PetShop;
 GO
