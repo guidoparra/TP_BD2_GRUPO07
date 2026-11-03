@@ -29,5 +29,64 @@ BEGIN
 END
 GO
 
-SELECT * FROM Categoria;
+IF OBJECT_ID('Producto', 'U') IS NULL
+CREATE TABLE Producto (
+    IdProducto   INT IDENTITY(1,1) PRIMARY KEY,
+    Nombre       VARCHAR(100) NOT NULL,
+    Descripcion  VARCHAR(200),
+    Precio       DECIMAL(10,2) NOT NULL CHECK (Precio > 0),
+    Stock        INT NOT NULL CHECK (Stock >= 0),
+    StockMinimo  INT NOT NULL CHECK (StockMinimo >=0),
+    IdCategoria  INT NOT NULL,
+    IdProveedor  INT NOT NULL,
+    FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria),
+    FOREIGN KEY (IdProveedor) REFERENCES Proveedor(IdProveedor)
+);
+GO
 
+IF OBJECT_ID('HistorialPrecio', 'U') IS NULL
+CREATE TABLE HistorialPrecio (
+    IdHistorial    INT IDENTITY(1,1) PRIMARY KEY,
+    IdProducto     INT NOT NULL,
+    PrecioAnterior DECIMAL(10,2) NOT NULL CHECK (PrecioAnterior > 0),
+    PrecioNuevo    DECIMAL (10,2) NOT NULL CHECK (PrecioNuevo>0),
+    FechaCambio    DATETIME NOT NULL DEFAULT GETDATE(),
+    FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto)
+);
+GO
+
+IF NOT EXISTS (SELECT 1 FROM Producto) /* solo inserta si la tabla está vacía */
+BEGIN
+    INSERT INTO Producto (Nombre, Descripcion, Precio, Stock, StockMinimo, IdCategoria, IdProveedor)
+    VALUES
+    /*Descanso y confort*/
+    ('Cama acolchada mediana', 'Cama lavable para perros medianos', 18500.00, 12, 5, 1, 1),
+    ('Cucha plástica para gatos', 'Casa resistente a la intemperie', 24900.00, 2, 4, 1, 1),
+    /*Paseo y transporte*/
+    ('Correa de nylon 1.5m', 'Correa resistente con manija acolchada', 6200.00, 3, 10, 2, 1),
+    ('Transportadora mediana', 'Transportadora rígida con puerta metálica', 32000.00, 8, 3, 2, 1),
+    /*Entrenamiento y educación*/
+    ('Bolsitas para heces x100', 'Bolsitas biodegradables con dispensador', 2800.00, 40, 15, 3, 1),
+    /*Peluquería y estética*/
+    ('Cepillo deslanador', 'Cepillo para pelo largo', 4800.00, 25, 8, 4, 1),
+    /*Salud y prevención*/
+    ('Pipeta antipulgas', 'Pipeta mensual para perros de 10 a 25 kg', 7500.00, 4, 12, 5, 1),
+    /*Mobiliario y enriquecimiento ambiental*/
+    ('Rascador torre para gatos', 'Torre de 3 niveles con sisal', 45000.00, 6, 2, 6, 1),
+    /*Alimentación y accesorios inteligentes*/
+    ('Bebedero tipo fuente', 'Fuente de agua eléctrica de 2 litros', 21000.00, 10, 4, 7, 1),
+    /*Productos para otras especies*/
+    ('Filtro para acuario', 'Filtro interno para acuarios de hasta 100 litros', 15500.00, 1, 5, 8, 1),
+    /*Indumentaria y artículos de temporada*/
+    ('Sweater para perro talle M', 'Sweater de lana tejido a mano', 9800.00, 18, 6, 9, 1),
+    /*Premios y productos especiales*/
+    ('Snack dental x12', 'Premios dentales para perros medianos', 5200.00, 60, 20, 10, 1),
+    /*Limpieza del hogar y control de olores*/
+    ('Limpiador enzimático 500ml', 'Elimina manchas y olores de orina', 6900.00, 22, 8, 11, 1),
+    /*Personalización y recuerdos*/
+    ('Chapita grabada con nombre', 'Chapita de acero con nombre y teléfono', 3500.00, 5, 10, 12, 1),
+    ('Marco para huella de mascota', 'Kit con marco para conservar la huella', 12000.00, 14, 3, 12, 1);
+END
+GO
+
+SELECT * FROM Producto;
