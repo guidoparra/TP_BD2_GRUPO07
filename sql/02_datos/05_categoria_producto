@@ -1,8 +1,10 @@
+-- Lucia Maffey, datos en tablas categoria y producto
 USE PetShop;
 GO
 IF NOT EXISTS (SELECT 1 FROM Categoria)
 BEGIN
-    INSERT INTO Categoria (Nombre, Descripcion) VALUES
+    INSERT INTO Categoria (Nombre, Descripcion) 
+    VALUES
     ('Descanso y confort', 'Camas, cuchas, colchones, mantas, almohadones, casas, hamacas y cuevas para gatos y fundas para camas'),
     ('Paseo y transporte', 'Correas, pretales, collares, chapitas identificatorias, bozales, bolsos, mochilas, transportadoras, cinturones de seguridad y cochecitos'),
     ('Entrenamiento y educación', 'Pañales, paños absorbentes, bolsitas para heces, clickers, silbatos, empapadores, barreras y corrales'),

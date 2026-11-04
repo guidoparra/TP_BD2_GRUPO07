@@ -1,3 +1,4 @@
+-- Lucia Maffey, creación de tablas categoria y producto
 IF DB_ID('PetShop') IS NULL /*chequeo de que exista la base de datos*/
     CREATE DATABASE PetShop;
 GO
