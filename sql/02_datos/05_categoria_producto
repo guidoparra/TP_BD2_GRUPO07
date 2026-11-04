@@ -1,16 +1,3 @@
-IF DB_ID('PetShop') IS NULL /*chequeo de que exista la base de datos*/
-    CREATE DATABASE PetShop;
-GO
-USE PetShop;
-GO
-
-IF OBJECT_ID('Categoria', 'U') IS NULL /*chequeo de que exista la tabla*/
-CREATE TABLE Categoria (
-    IdCategoria INT IDENTITY(1,1) PRIMARY KEY,
-    Nombre      VARCHAR(50) NOT NULL UNIQUE,
-    Descripcion VARCHAR(200)
-);
-
 IF NOT EXISTS (SELECT 1 FROM Categoria)
 BEGIN
     INSERT INTO Categoria (Nombre, Descripcion) VALUES
@@ -29,31 +16,6 @@ BEGIN
 END
 GO
 
-IF OBJECT_ID('Producto', 'U') IS NULL
-CREATE TABLE Producto (
-    IdProducto   INT IDENTITY(1,1) PRIMARY KEY,
-    Nombre       VARCHAR(100) NOT NULL,
-    Descripcion  VARCHAR(200),
-    Precio       DECIMAL(10,2) NOT NULL CHECK (Precio > 0),
-    Stock        INT NOT NULL CHECK (Stock >= 0),
-    StockMinimo  INT NOT NULL CHECK (StockMinimo >=0),
-    IdCategoria  INT NOT NULL,
-    IdProveedor  INT NOT NULL,
-    FOREIGN KEY (IdCategoria) REFERENCES Categoria(IdCategoria),
-    FOREIGN KEY (IdProveedor) REFERENCES Proveedor(IdProveedor)
-);
-GO
-
-IF OBJECT_ID('HistorialPrecio', 'U') IS NULL
-CREATE TABLE HistorialPrecio (
-    IdHistorial    INT IDENTITY(1,1) PRIMARY KEY,
-    IdProducto     INT NOT NULL,
-    PrecioAnterior DECIMAL(10,2) NOT NULL CHECK (PrecioAnterior > 0),
-    PrecioNuevo    DECIMAL (10,2) NOT NULL CHECK (PrecioNuevo>0),
-    FechaCambio    DATETIME NOT NULL DEFAULT GETDATE(),
-    FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto)
-);
-GO
 
 IF NOT EXISTS (SELECT 1 FROM Producto) /* solo inserta si la tabla está vacía */
 BEGIN
@@ -88,5 +50,3 @@ BEGIN
     ('Marco para huella de mascota', 'Kit con marco para conservar la huella', 12000.00, 14, 3, 12, 1);
 END
 GO
-
-SELECT * FROM Producto;
