@@ -1,14 +1,12 @@
 ﻿-- =============================================
 -- Parra Guido Emanuel - Datos de Venta y DetalleVenta
--- El material de la facu dice que requiere: al menos 5 clientes y 8 productos
 -- =============================================
 USE PetShop;
 GO
 
--- Fechas en formato ISO (con T) para que no dependan del idioma del servidor
 INSERT INTO Venta (Fecha, IdCliente) VALUES
 ('2026-08-03T10:15:00', 1),
-('2026-08-12T17:40:00', 2),
+('2026-08-12T17:40:00', 2), -- 10--11-2026 v2
 ('2026-08-25T12:05:00', 3),
 ('2026-09-02T09:30:00', 1),
 ('2026-09-14T18:20:00', 4),
