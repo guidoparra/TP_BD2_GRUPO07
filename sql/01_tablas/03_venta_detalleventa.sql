@@ -25,7 +25,7 @@ CREATE TABLE DetalleVenta (
     CONSTRAINT FK_DetalleVenta_Producto FOREIGN KEY (IdProducto) REFERENCES Producto(IdProducto),
     CONSTRAINT CK_DetalleVenta_Cantidad CHECK (Cantidad > 0),
     CONSTRAINT CK_DetalleVenta_Precio CHECK (PrecioUnitario > 0),
-    -- un mismo producto no se repite dentro de una venta
+    -- un mismo producto no se puede repetir dentro de una venta 10-11-2026
     CONSTRAINT UQ_DetalleVenta_VentaProducto UNIQUE (IdVenta, IdProducto)
 );
 GO
