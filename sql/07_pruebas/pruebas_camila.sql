@@ -1,34 +1,32 @@
 USE PetShop;
 GO
 
-BEGIN TRANSACTION;
-
--- 1. Ver stock inicial
+-- Ver stock actual del producto
 SELECT IdProducto, Nombre, Stock
 FROM Producto
-WHERE IdProducto = 2;
+WHERE IdProducto = 6;
 GO
 
--- 2. Probar procedimiento con datos válidos
+-- Probar procedimiento con datos válidos
 EXEC sp_AgregarProductoACompra
     @IdCompra = 3,
-    @IdProducto = 2,
+    @IdProducto = 6,
     @Cantidad = 5,
     @CostoUnitario = 3200.00;
 GO
 
--- 3. Verificar que el trigger haya aumentado el stock
+-- Verificar que el trigger haya aumentado el stock
 SELECT IdProducto, Nombre, Stock
 FROM Producto
-WHERE IdProducto = 2;
+WHERE IdProducto = 6;
 GO
 
--- 4. Probar vista de productos con bajo stock
+-- Probar la vista
 SELECT *
 FROM vw_ProductosBajoStock;
 GO
 
--- 5. Probar error: compra inexistente
+-- Probar error: compra inexistente
 EXEC sp_AgregarProductoACompra
     @IdCompra = 999,
     @IdProducto = 1,
@@ -36,13 +34,10 @@ EXEC sp_AgregarProductoACompra
     @CostoUnitario = 3200.00;
 GO
 
--- 6. Probar error: cantidad inválida
+-- Probar error: cantidad inválida
 EXEC sp_AgregarProductoACompra
     @IdCompra = 3,
     @IdProducto = 1,
     @Cantidad = -5,
     @CostoUnitario = 3200.00;
-GO
-
-ROLLBACK TRANSACTION;
 GO
