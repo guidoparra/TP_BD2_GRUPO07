@@ -3,6 +3,7 @@ GO
 -- =============================================
 -- TABLA: Cliente
 -- =============================================
+IF OBJECT_ID('Cliente', 'U') IS NULL
 CREATE TABLE Cliente (
     IdCliente INT IDENTITY(1,1) NOT NULL,
     Nombre VARCHAR(50) NOT NULL,
@@ -16,6 +17,7 @@ GO
 -- =============================================
 -- TABLA: Proveedor
 -- =============================================
+IF OBJECT_ID('Proveedor', 'U') IS NULL
 CREATE TABLE Proveedor (
     IdProveedor INT IDENTITY(1,1) NOT NULL,
     RazonSocial VARCHAR(100) NOT NULL,

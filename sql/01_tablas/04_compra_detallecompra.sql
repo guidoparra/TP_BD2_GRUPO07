@@ -1,3 +1,4 @@
+IF OBJECT_ID('Compra', 'U') IS NULL
 CREATE TABLE Compra (
     IdCompra INT IDENTITY(1,1) PRIMARY KEY,
     IdProveedor INT NOT NULL,
@@ -9,6 +10,7 @@ CREATE TABLE Compra (
     REFERENCES Proveedor (IdProveedor)
 );
 
+IF OBJECT_ID('DetalleCompra', 'U') IS NULL
 CREATE TABLE DetalleCompra (
     IdDetalleCompra INT IDENTITY(1,1) PRIMARY KEY,
     IdCompra INT NOT NULL,

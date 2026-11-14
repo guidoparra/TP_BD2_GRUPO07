@@ -4,6 +4,7 @@
 USE PetShop;
 GO
 
+IF OBJECT_ID('Venta', 'U') IS NULL
 CREATE TABLE Venta (
     IdVenta   INT IDENTITY(1,1) NOT NULL,
     Fecha     DATETIME NOT NULL CONSTRAINT DF_Venta_Fecha DEFAULT GETDATE(),
@@ -14,6 +15,7 @@ CREATE TABLE Venta (
 );
 GO
 
+IF OBJECT_ID('DetalleVenta', 'U') IS NULL
 CREATE TABLE DetalleVenta (
     IdDetalleVenta INT IDENTITY(1,1) NOT NULL,
     IdVenta        INT NOT NULL,

@@ -3,6 +3,7 @@ GO
 -- =============================================
 -- DATOS DE PRUEBA: Proveedor
 -- =============================================
+
 INSERT INTO dbo.Proveedor (RazonSocial, CUIT, Telefono, Email)
 VALUES 
 ('Distribuidora Alimentos S.A.', '30-44561665-9', '11-3454-4654', 'DistribuidoraAlimentos@gmail.com'),
