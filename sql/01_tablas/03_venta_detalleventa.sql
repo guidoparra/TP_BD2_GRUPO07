@@ -31,3 +31,4 @@ CREATE TABLE DetalleVenta (
     CONSTRAINT UQ_DetalleVenta_VentaProducto UNIQUE (IdVenta, IdProducto)
 );
 GO
+

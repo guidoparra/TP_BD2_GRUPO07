@@ -1,7 +1,7 @@
 USE PetShop;
 GO
 
-CREATE TRIGGER trg_SumarStockCompra
+CREATE OR ALTER TRIGGER trg_SumarStockCompra
 ON DetalleCompra 
 AFTER INSERT
 AS 

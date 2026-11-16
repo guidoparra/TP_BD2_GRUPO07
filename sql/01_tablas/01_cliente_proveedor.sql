@@ -27,3 +27,4 @@ CREATE TABLE Proveedor (
     PRIMARY KEY (IdProveedor)
 );
 GO
+

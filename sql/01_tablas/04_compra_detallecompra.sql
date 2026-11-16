@@ -38,3 +38,4 @@ CREATE TABLE DetalleCompra (
     UNIQUE (IdCompra, IdProducto)
 
 );
+

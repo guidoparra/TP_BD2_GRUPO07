@@ -5,7 +5,7 @@ IF OBJECT_ID('dbo.vw_ResumenPorCliente', 'V') IS NOT NULL
     DROP VIEW dbo.vw_ResumenPorCliente;
 GO
 
-CREATE VIEW dbo.vw_ResumenPorCliente
+CREATE OR ALTER VIEW dbo.vw_ResumenPorCliente
 AS
 SELECT 
     c.IdCliente,

@@ -1,4 +1,4 @@
-CREATE PROCEDURE sp_AgregarProductoACompra
+CREATE OR ALTER PROCEDURE sp_AgregarProductoACompra
 @IdCompra INT,
 @IdProducto INT,
 @Cantidad INT,
